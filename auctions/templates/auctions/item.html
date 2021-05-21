@@ -1,0 +1,113 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+<link href="{% static 'auctions/styles.css' %}" rel="stylesheet" type="text/css">
+{% block title %}
+
+  Auction for  {{ item.title }}
+    {% if item.status == False %}
+        - Closed
+    {% else %}
+        - Active
+    {% endif %}
+{%  endblock %}
+
+{% block body %}
+<style>
+    body {
+        padding: 10px;
+    }
+    .current-bid {
+        font-size: 1.2rem;
+    }
+    .auction-status {
+        border: red solid 1px;
+        padding: 10px;
+    }
+    .item-container {
+        padding: 10px;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: space-between;
+    }
+    img {
+        margin: 1rem;
+    }
+    .description {
+        padding: 1rem 0;
+    }
+    #bid {
+        width: 100px;
+    }
+    /*#item_comment {*/
+    /*    height: 100px;*/
+    /*}*/
+    .btn {
+        margin: 1rem 0;
+    }
+</style>
+<div class="item-container">
+    {{ message }}
+    <h2>{{ item.title }}</h2>
+    <p class="current-bid">Current bid: ${{ price }}</p>
+    {% if item.img == "" %}
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png" alt="no image" width="180" height="181">
+    {% else %}
+        <img src="{{ item.img }}" alt="{{ item.title }}" width="180" height="181">
+    {% endif %}
+    <p class="description">Description: <br><br> {{ item.description }}</p>
+    {% if item.status and user.is_active %}
+
+    <form method="post" action="{% url 'watch' item.id %}" name="watch">
+        {% csrf_token %}
+        {% if watched %}
+        You are watching this.
+        <button type="submit" class="btn btn-link btn-sm">unwatch?</button>
+        {% else %}
+        You can watch this.
+        <button type="submit" class="btn btn-link btn-sm">watch?</button>
+        {% endif %}
+    </form>
+    <hr>
+        <form action="{% url 'action' item.id %}" method="post" name="bid">
+            {% csrf_token %}
+            {{ bidform.as_table }}
+            <button type="submit" class="btn btn-outline-primary btn-sm">Bid</button>
+        </form>
+
+    <br>
+        <form action="{% url 'action' item.id %}" method="post" name="comment">
+            {% csrf_token %}
+            {{ commentform.as_table }}
+            <button type="submit" class="btn btn-outline-primary btn-sm">Comment</button>
+        </form>
+    <br>
+        {% if owner %}
+    <br>
+            <form method="post" action="{% url 'close' item.id %}" name="close">
+            {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Close</button>
+            </form>
+        {% endif %}
+    <hr>
+        <p>Comments</p>
+        {% for comment in comments %}
+            <p class="comment">{{ comment.comment }}<br>
+            by {{ comment.user }}</p>
+            <br>
+        {% endfor %}
+    {% endif %}
+    {% if item.status == False %}
+<div class="auction-status">
+<h5><strong>Auction Closed</strong></h5>
+        {% if won %}
+            <h6>You won this Item</h6>
+        {% else %}
+            <h5>Winner</h5>
+            <h6>{{ item.winner }}</h6>
+        {% endif %}
+</div>
+    {% endif %}
+</div>
+{% endblock %}

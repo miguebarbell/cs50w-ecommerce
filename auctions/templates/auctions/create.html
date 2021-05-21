@@ -1,0 +1,17 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+<link href="{% static 'auctions/styles.css' %}" rel="stylesheet" type="text/css">
+{% block title %}
+   Create Listing
+{%  endblock %}
+
+{% block body %}
+<div style="display: flex; flex-direction:column"></div>
+<!--<form method="POST">-->
+   <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form}}
+    <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+</div>
+{% endblock %}

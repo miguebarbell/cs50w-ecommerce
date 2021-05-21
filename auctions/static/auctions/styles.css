@@ -1,0 +1,74 @@
+/*body {*/
+/*    padding: 10px;*/
+/*}*/
+
+/*.item {*/
+/*    border: 3px solid dodgerblue;*/
+/*    list-style-type: none;*/
+/*    margin: 10px;*/
+/*    padding: 10px;*/
+/*}*/
+
+/*.form-control {*/
+/*  padding-left: 10px;*/
+/*}*/
+
+/*.button {*/
+/*  background-color: dodgerblue;*/
+/*  border: none;*/
+/*  color: white;*/
+/*  padding: 10px 25px;*/
+/*  text-align: center;*/
+/*  text-decoration: none;*/
+/*  flex-direction: column;*/
+/*  font-size: 16px;*/
+/*  margin: 4px 2px;*/
+/*  cursor: pointer;*/
+/*}*/
+
+/*.button:hover {*/
+/*  border-color: white;*/
+/*}*/
+
+/*.comment {*/
+/*  border-bottom: dodgerblue;*/
+/*}*/
+
+/*.current-bid {*/
+/*  font-size: 1.5rem;*/
+/*}*/
+
+/*.description {*/
+/*  font-size: 1.2rem;*/
+/*}*/
+
+/*.message {*/
+/*  font-weight: bold;*/
+/*  font-size: 1.5rem;*/
+/*  background-color: dodgerblue;*/
+/*}*/
+
+/*.ulnodot {*/
+/*  list-style: none;*/
+/*}*/
+
+/*.flexform {*/
+/*  display: flex;*/
+/*}*/
+
+/*.liflex {*/
+/*    display: flex;*/
+/*    padding-left: 10px;*/
+/*    flex-direction: column;*/
+/*    list-style-type: none*/
+/*}*/
+
+/*.item-container {*/
+/*    flex-direction: row;*/
+/*    border: 10px solid dodgerblue;*/
+/*}*/
+
+/*.item-description {*/
+/*    list-style-type: none;*/
+
+/*}*/

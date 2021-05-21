@@ -1,0 +1,38 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+<link href="{% static 'auctions/styles.css' %}" rel="stylesheet" type="text/css">
+{% block title %}
+Login
+{% endblock %}
+{% block body %}
+
+<link href="{% static 'auctions/styles.css' %}" rel="stylesheet" type="text/css">
+    <h2>Login</h2>
+
+    {% if message %}
+        <div class="message">{{ message }}</div>
+    {% endif %}
+<!--<ul style="list-style-type: none">-->
+<!--    <ul class="ulnodot">-->
+<!--<div class="flexform">-->
+    <div style="display: flex;">
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+<!--        <li>-->
+            <input autofocus class="form-control" type="text" name="username" placeholder="Username">
+        </div>
+<!--        </li>-->
+<!--        <li>-->
+        <div class="form-group">
+            <input class="form-control" type="password" name="password" placeholder="Password">
+        </div>
+<!--        </li>-->
+        <input class="btn btn-primary" type="submit" value="Login">
+    </form>
+</div>
+<!--</ul>-->
+<div>
+    Don't have an account? <a href="{% url 'register' %}">Register here.</a>
+</div>
+{% endblock %}

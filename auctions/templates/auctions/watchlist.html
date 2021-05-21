@@ -1,0 +1,30 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+<link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
+{% block title %}
+Watchlist
+
+{%  endblock %}
+
+{% block body %}
+<style>
+    h2 {
+        padding: 1rem;
+    }
+    .main-content {
+        display:flex;
+        flex-direction: column;
+        max-width: 90vw;
+        justify-content: space-between;
+        align-items: center;
+    }
+</style>
+<div class="main-content">
+<h2>Watchlist</h2>
+<ul>
+{% for item in items %}
+<li><a href="{% url 'item' item.id %}">{{ item }}</a></li>
+{% endfor %}
+</ul>
+</div>
+{% endblock %}

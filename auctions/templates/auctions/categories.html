@@ -1,0 +1,68 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+<!--<link href="{% static 'auctions/styles.css' %}" rel="stylesheet">-->
+{% block title %}
+Categories
+{%  endblock %}
+
+{% block body %}
+<style>
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    .category {
+        padding-left: 30px;
+        width: 13vw;
+    }
+    .list {
+        padding-left: 50px;
+        width: 60vw;
+    }
+    .category-container {
+        padding: 20px;
+        display: flex;
+        flex-direction: row;
+        border: 2px solid dodgerblue;
+        max-width: 90%;
+        margin: 10px;
+        align-items: center;
+        /*justify-content: space-around;*/
+    }
+    .liflex {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        padding: 10px;
+        /*align-items: left;*/
+        padding-left: 5%;
+    }
+    @media screen and (max-width: 900px) {
+        .category-container {
+            flex-direction: column;
+        }
+        .category {
+            padding: 1rem;
+        }
+    }
+</style>
+<h2 class="categories">Categories</h2>
+<br>
+<div class="liflex">
+{% for category in categories %}
+<div class="category-container">
+<h4 class="category">{{ category }}</h4>
+
+
+<ul class="list">
+{% for item in items %}
+{% if item.category == category %}
+<li><a href="{% url 'item' item.id %}">{{ item }}</a></li>
+{% endif %}
+{% endfor %}
+</ul>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
